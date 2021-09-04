@@ -24,7 +24,9 @@ If you have major coding issues with this bot, please join and ask for help.
 ## 💨 Run the projects
 
 [![Remix on Glitch](https://cdn.glitch.com/2703baf2-b643-4da7-ab91-7ee2a2d00b5b%2Fremix-button.svg)](https://glitch.com/edit/#!/import/github/Grizz1e/Kavya)
+
 [![Run on Repl.it](https://repl.it/badge/github/Grizz1e/Kavya)](https://repl.it/github/Grizz1e/Kavya)
+
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Grizz1e/Kavya)
 
 Made with ❤️ and JavaScript!
