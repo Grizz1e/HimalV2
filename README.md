@@ -17,7 +17,7 @@ npm install discord.js @discordjs/builders @discordjs/opus @discordjs/rest @disc
 
 ## 📝 [Support Server](https://discord.gg/nZRMdQeK6m)
 
-### **DO NOT JOIN OUR DISCORD FOR DASHBOARD ISSUES AND LAVALINK ISSUES. WE WILL NOT HELP YOU.**
+### **DO NOT JOIN OUR DISCORD FOR SELF HOSTING ISSUES. WE WILL NOT HELP YOU.**
 
 If you have major coding issues with this bot, please join and ask for help.
 
