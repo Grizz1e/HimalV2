@@ -15,7 +15,7 @@ npm install discord.js @discordjs/builders @discordjs/opus @discordjs/rest @disc
 - **Step 4:** Run `node register.js` to register commands *(`npx node register.js` if on replit)*
 - **Step 5:** Run `node index.js` in your terminal *(`npx node index.js` if on replit)*
 
-## 📝 [Support Server](https://discord.gg/sbySMS7m3v)
+## 📝 [Support Server](https://discord.gg/nZRMdQeK6m)
 
 ### **DO NOT JOIN OUR DISCORD FOR DASHBOARD ISSUES AND LAVALINK ISSUES. WE WILL NOT HELP YOU.**
 
