@@ -19,7 +19,7 @@ module.exports = {
     const vc = interaction.member.voice
     if (interaction.member.roles.cache.some(role => role.name.toLowerCase() === 'dj') || vc.channel.permissionsFor(interaction.member).has("MANAGE_CHANNELS")) {
       if (interaction.options.getString('station') === null) {
-        client.func.play(process.env.LOFI_STREAM)
+        client.func.play(interaction, process.env.LOFI_1, 'Lo-fi Beats')
       } else {
         axios.get(
           `http://all.api.radio-browser.info/json/stations/byname/${encodeURIComponent(interaction.options._hoistedOptions[0].value)}`
