@@ -1,6 +1,5 @@
 const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
 const { joinVoiceChannel, createAudioPlayer, createAudioResource, getVoiceConnection, StreamType } = require("@discordjs/voice");
-const Player = createAudioPlayer();
 
 let row = new MessageActionRow()
   .addComponents(
@@ -32,7 +31,7 @@ async function play(interaction, url, stName) {
   if (!channel) return interaction.reply({ content: "You're not in a Voice/Stage Channel", ephemeral: true });
 
   if (!channel.joinable) return interaction.reply({ content: "I can't join the channel you're connected to", ephemeral: true });
-  if (!channel.speakable) return interaction.reply({ content: "I can't speak in the channel you're connected to", ephemeral: true });
+  if (!channel.speakable && channel.type !== 'GUILD_STAGE_VOICE') return interaction.reply({ content: "I can't speak in the channel you're connected to", ephemeral: true });
   if (channel.full) return interaction.reply({ content: "The Voice Channel you're currently in is full", ephemeral: true });
 
   const connection = joinVoiceChannel({
@@ -48,10 +47,13 @@ async function play(interaction, url, stName) {
   const subscription = connection.subscribe(audioPlayer);
 
   audioPlayer.play(resource);
-
+  let urls = [
+    process.env.LOFI_1,
+    process.env.LOFI_2
+  ]
   let embed = new MessageEmbed()
     .setColor('GREEN')
-    .setDescription(`**▶️ | Started playing ${stName} in <#${channel.id}>**${url === 'https://ec2.yesstreaming.net:1915/stream' ? '' : '\n**[Add your own station](https://www.radio-browser.info/#/add)**'}`)
+    .setDescription(`**▶️ | Started playing ${stName} in <#${channel.id}>**${urls.includes(url) ? '\n**[Add your own station](https://www.radio-browser.info/#/add)**' : ''}`)
   interaction.reply({
     embeds: [embed], components: [row]
   });
