@@ -16,7 +16,7 @@ module.exports = {
     ).then(function(response) {
       let data = response.data;
       if (data.length < 1) return interaction.reply('No radio station found with that name')
-      else client.func.play(interaction, data[0].url_resolved, data[0].name)
+      else client.func.play(interaction, data[0].url, data[0].name)
     })
   },
 };
