@@ -24,7 +24,7 @@ async function play(interaction, url, stName) {
 
   const cncsn = await getVoiceConnection(interaction.guildId);
 
-  if (cncsn && cncsn.receiver.connectionData.speaking && interaction.commandName !== 'forceplay') return interaction.reply({ content: `I'm currently being used in <#${channel.id}>`, ephemeral: true })
+  if (cncsn && cncsn.receiver.connectionData.speaking && interaction.commandName !== 'forceplay') return interaction.reply({ content: `I'm currently being used in <#${interaction.guild.me.voice.channel.id}>`, ephemeral: true })
 
   if (!channel) return interaction.reply({ content: "You're not in a Voice/Stage Channel", ephemeral: true });
 
