@@ -4,12 +4,10 @@ const { joinVoiceChannel, createAudioPlayer, createAudioResource, getVoiceConnec
 let row = new MessageActionRow()
   .addComponents(
     new MessageButton()
-      .setLabel('Buy me a coffee')
       .setStyle('LINK')
       .setURL('https://buymeacoffee.com/KavyaBot')
       .setEmoji('882685341444743198'),
     new MessageButton()
-      .setLabel('Support')
       .setStyle('LINK')
       .setURL('https://discord.com/invite/nZRMdQeK6m')
       .setEmoji('882684602639081492'),
