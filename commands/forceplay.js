@@ -29,7 +29,7 @@ module.exports = {
           else client.func.play(interaction, data[0].url, data[0].name)
         })
       }
-    }
+    } else return interaction.reply({ content: "You don't have `Manage Channel` permission nor do you have a role named `DJ`", ephemeral: true })
 
   },
 };
