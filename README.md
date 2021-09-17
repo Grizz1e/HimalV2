@@ -8,7 +8,7 @@
 ## 📝 Setup
 - **Step 1:** Open `.env.example`
 - **Step 2:** Put the required values and rename it to `.env`
-- **Step 3:** Install required package using the following script *(If you're not trying to host it on replit, you can delete `server.js` and `.replit` and skip the installation of `node` and `express` packages. Also remeber to delete line 1 and 38 from `index.js`)*
+- **Step 3:** Install required package using the following script
 ```js
 npm install discord.js @discordjs/builders @discordjs/opus @discordjs/rest @discordjs/voice axios discord-api-types dotenv express ffmpeg-static node tweetnacl
 ```

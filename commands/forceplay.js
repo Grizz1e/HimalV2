@@ -22,11 +22,11 @@ module.exports = {
         client.func.play(interaction, process.env.LOFI_1, 'Lo-fi Beats')
       } else {
         axios.get(
-          `http://all.api.radio-browser.info/json/stations/byname/${encodeURIComponent(interaction.options._hoistedOptions[0].value)}`
+          `http://all.api.radio-browser.info/json/stations/byname/${encodeURIComponent(interaction.options._hoistedOptions[0].value)}?limit=20`
         ).then(function(response) {
           let data = response.data;
-          if (data.length < 1) return interaction.reply('No radio station found with that name')
-          else client.func.play(interaction, data[0].url, data[0].name)
+          if (data.length < 1) return interaction.reply({ content: 'No radio station found with that name', ephemeral: true })
+          else client.func.play(interaction, data[0].url_resolved, data[0].name)
         })
       }
     } else return interaction.reply({ content: "You don't have `Manage Channel` permission nor do you have a role named `DJ`", ephemeral: true })

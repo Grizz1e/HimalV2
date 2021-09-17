@@ -1,8 +1,8 @@
 module.exports = {
   name: 'ready',
   once: true,
-  execute(client) {
+  async execute(client) {
     console.log(`Logged in as ${client.user.tag}!`);
-    client.user.setActivity('/play', { type: 'LISTENING' });
+    await client.user.setActivity('/play', { type: 'LISTENING' });
   },
 };

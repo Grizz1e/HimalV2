@@ -1,7 +1,7 @@
 {
-  "name": "Shanti",
+  "name": "kavya",
   "version": "1.0.0",
-  "description": "",
+  "description": "The #1 Lo-Fi Music and Radio Bot available on Discord",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
