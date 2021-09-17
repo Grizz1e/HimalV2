@@ -18,19 +18,21 @@ let row = new MessageActionRow()
       .setEmoji('882683102890197062')
   )
 
-async function play(interaction, url, stName) {
+async function play(interaction, url, stName, replied) {
   const vc = interaction.member.voice
   const channel = vc.channel
 
   const cncsn = await getVoiceConnection(interaction.guildId);
 
-  if (cncsn && cncsn.receiver.connectionData.speaking && interaction.commandName !== 'forceplay') return interaction.reply({ content: `I'm currently being used in <#${interaction.guild.me.voice.channel.id}>`, ephemeral: true })
+  if (cncsn && cncsn.receiver.connectionData.speaking && interaction.commandName !== 'forceplay') return replied ? interaction.followUp({ content: `I'm currently being used in <#${interaction.guild.me.voice.channel.id}>`, ephemeral: true }) : interaction.reply({ content: `I'm currently being used in <#${interaction.guild.me.voice.channel.id}>`, ephemeral: true })
 
-  if (!channel) return interaction.reply({ content: "You're not in a Voice/Stage Channel", ephemeral: true });
+  if (!channel) return replied ? interaction.followUp({ content: "You're not in a Voice/Stage Channel", ephemeral: true }) : interaction.reply({ content: "You're not in a Voice/Stage Channel", ephemeral: true });
 
-  if (!channel.joinable) return interaction.reply({ content: "I can't join the channel you're connected to", ephemeral: true });
-  if (!channel.speakable && channel.type !== 'GUILD_STAGE_VOICE') return interaction.reply({ content: "I can't speak in the channel you're connected to", ephemeral: true });
-  if (channel.full) return interaction.reply({ content: "The Voice Channel you're currently in is full", ephemeral: true });
+  if (!channel.joinable) return replied ? interaction.followUp({ content: "I can't join the channel you're connected to", ephemeral: true }) : interaction.reply({ content: "I can't join the channel you're connected to", ephemeral: true });
+
+  if (!channel.speakable && channel.type !== 'GUILD_STAGE_VOICE') return replied ? interaction.followUp({ content: "I can't speak in the channel you're connected to", ephemeral: true }) : interaction.reply({ content: "I can't speak in the channel you're connected to", ephemeral: true });
+
+  if (channel.full) return replied ? interaction.followUp({ content: "The Voice Channel you're currently in is full", ephemeral: true }) : interaction.reply({ content: "The Voice Channel you're currently in is full", ephemeral: true });
 
   const connection = joinVoiceChannel({
     channelId: channel.id,
@@ -51,8 +53,10 @@ async function play(interaction, url, stName) {
   ]
   let embed = new MessageEmbed()
     .setColor('GREEN')
-    .setDescription(`**▶️ | Started playing ${stName} in <#${channel.id}>**${urls.includes(url) ? '\n**[Add your own station](https://www.radio-browser.info/#/add)**' : ''}`)
-  interaction.reply({
+    .setDescription(`**▶️ | Started playing ${stName} in <#${channel.id}>**${!urls.includes(url) ? '\n**[Add your own station](https://www.radio-browser.info/#/add)**' : ''}`)
+  replied ? interaction.followUp({
+    embeds: [embed], components: [row]
+  }) : interaction.reply({
     embeds: [embed], components: [row]
   });
 }
