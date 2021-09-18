@@ -1,6 +1,6 @@
 ## ❗Prerequisites❗
 - [Node.js 16+](https://nodejs.org/en/download/)
-- discord.js@13+
+- [discord.js@13+](https://discord.js.org/#/)
 - [FFMPEG](https://ffmpeg.org/download.html)
 
 **DO NOT JOIN OUR DISCORD FOR SELF HOSTING ISSUES**
@@ -17,7 +17,7 @@ npm install discord.js @discordjs/builders @discordjs/opus @discordjs/rest @disc
 
 ## 📝 [Support Server](https://discord.gg/nZRMdQeK6m)
 
-### **DO NOT JOIN OUR DISCORD FOR SELF HOSTING ISSUES. WE WILL NOT HELP YOU.**
+## **DO NOT JOIN OUR DISCORD FOR SELF HOSTING ISSUES. WE WILL NOT HELP YOU.**
 
 ## 💨 Run the projects
 
