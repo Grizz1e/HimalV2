@@ -1,3 +1,4 @@
+//main file index.js
 const keepAlive = require('./server.js');
 const { Client, Collection, Intents } = require('discord.js');
 const fs = require('fs')
