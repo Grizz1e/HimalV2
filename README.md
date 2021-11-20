@@ -10,7 +10,7 @@
 - **Step 2:** Put the required values and rename it to `.env`
 - **Step 3:** Install required package using the following script
 ```js
-npm install discord.js @discordjs/builders @discordjs/opus @discordjs/rest @discordjs/voice axios discord-api-types dotenv express ffmpeg-static node tweetnacl
+npm install discord.js @discordjs/builders @discordjs/opus @discordjs/rest @discordjs/voice axios discord-api-types dotenv express ffmpeg-static tweetnacl
 ```
 - **Step 4:** Run `node register.js` to register commands *(`npx node register.js` if on replit)*
 - **Step 5:** Run `node index.js` in your terminal *(`npx node index.js` if on replit)*
