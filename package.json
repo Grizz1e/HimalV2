@@ -1,27 +1,26 @@
 {
-  "name": "kavya",
+  "name": "Himal",
   "version": "1.0.0",
-  "description": "The #1 Lo-Fi Music and Radio Bot available on Discord",
+  "description": "",
   "main": "index.js",
+  "dependencies": {
+    "@discordjs/builders": "^0.8.2",
+    "@discordjs/rest": "0.1.0-canary.0",
+    "@discordjs/voice": "^0.7.5",
+    "axios": "^0.24.0",
+    "discord-api-types": "^0.24.0",
+    "discord.js": "^13.3.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "ffmpeg-static": "^4.4.0",
+    "tweetnacl": "^1.0.3"
+  },
+  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@discordjs/builders": "^0.6.0",
-    "@discordjs/opus": "^0.6.0",
-    "@discordjs/rest": "0.1.0-canary.0",
-    "@discordjs/voice": "^0.6.0",
-    "axios": "^0.21.1",
-    "discord-api-types": "^0.22.0",
-    "discord.js": "^13.1.0",
-    "dotenv": "^10.0.0",
-    "express": "^4.17.1",
-    "ffmpeg": "0.0.4",
-    "ffmpeg-static": "^4.4.0",
-    "node": "^16.6.1",
-    "tweetnacl": "^1.0.3"
-  }
+  "license": "ISC"
 }

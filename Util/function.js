@@ -14,7 +14,7 @@ let row = new MessageActionRow()
     new MessageButton()
       .setLabel('Invite Me')
       .setStyle('LINK')
-      .setURL('https://bit.ly/2UUusC8')
+      .setURL('https://himal.grizz1e.xyz')
       .setEmoji('882683102890197062')
   )
 
