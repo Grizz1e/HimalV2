@@ -10,10 +10,16 @@
 - **Step 2:** Put the required values and rename it to `.env`
 - **Step 3:** Install required package using the following script
 ```js
-npm install discord.js @discordjs/builders @discordjs/opus @discordjs/rest @discordjs/voice axios discord-api-types dotenv express ffmpeg-static tweetnacl
+npm install
 ```
 - **Step 4:** Run `node register.js` to register commands *(`npx node register.js` if on replit)*
 - **Step 5:** Run `node index.js` in your terminal *(`npx node index.js` if on replit)*
+
+## ⚠️ Important
+If you're not using repl.it to host your code 24/7, follow these steps as well
+- **Step 1:** Remove line 2 and line 43 from `index.js`
+- **Step 2:** Remove `server.js`
+- **Step 3:** Remove `.replit`
 
 ## 📝 [Support Server](https://discord.gg/nZRMdQeK6m)
 
@@ -21,10 +27,10 @@ npm install discord.js @discordjs/builders @discordjs/opus @discordjs/rest @disc
 
 ## 💨 Run the projects
 
-[![Remix on Glitch](https://cdn.glitch.com/2703baf2-b643-4da7-ab91-7ee2a2d00b5b%2Fremix-button.svg)](https://glitch.com/edit/#!/import/github/Grizz1e/Kavya)
+[![Remix on Glitch](https://cdn.glitch.com/2703baf2-b643-4da7-ab91-7ee2a2d00b5b%2Fremix-button.svg)](https://glitch.com/edit/#!/import/github/Grizz1e/HimalV2)
 
-[![Run on Repl.it](https://repl.it/badge/github/Grizz1e/Kavya)](https://repl.it/github/Grizz1e/Kavya)
+[![Run on Repl.it](https://repl.it/badge/github/Grizz1e/HimalV2)](https://repl.it/github/Grizz1e/HimalV2)
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Grizz1e/Kavya)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Grizz1e/HimalV2)
 
 Made with ❤️ and JavaScript!

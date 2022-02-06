@@ -14,8 +14,8 @@ module.exports = {
           .setCustomId('play'),
         new MessageButton()
           .setStyle('LINK')
-          .setURL('https://buymeacoffee.com/KavyaBot')
-          .setEmoji('882685341444743198'),
+          .setURL('https://ko-fi.com/Himal')
+          .setEmoji('919834131670646824'),
         new MessageButton()
           .setStyle('LINK')
           .setURL('https://discord.com/invite/nZRMdQeK6m')
@@ -23,7 +23,7 @@ module.exports = {
         new MessageButton()
           .setLabel('Invite Me')
           .setStyle('LINK')
-          .setURL('https://himal.grizz1e.xyz')
+          .setURL('https://himal.grizz1e.xyz/invite')
           .setEmoji('882683102890197062')
       )
     let embed = new MessageEmbed()

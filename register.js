@@ -1,10 +1,9 @@
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
-const fs = require('fs');
 const { config } = require('dotenv')
-
+const fs = require('fs');
 config({
-	path: `${__dirname}/.env`
+  path: `${__dirname}/.env`
 });
 
 const commands = [];
@@ -24,19 +23,21 @@ const rest = new REST({ version: '9' }).setToken(process.env.DISCORD_TOKEN);
 (async () => {
 	try {
 		console.log('Started refreshing application (/) commands.');
-		
-		// Registers slash commands globally
+
+    // If you want to set slash commands for specific guild, comment the code below
+    await rest.put(
+	    Routes.applicationCommands(clientId),
+	    { body: commands },
+    );
+
+
+    // If you want to set slash commands for specific guild, uncomment the code below
+    /*
 		await rest.put(
-			Routes.applicationCommands(process.env.CLIENT_ID),
+			Routes.applicationGuildCommands(clientId, guildId),
 			{ body: commands },
 		);
-		// If you want to register command for a single guild, use this:
-		/*
-		await rest.put(
-			Routes.applicationCommands(process.env.CLIENT_ID, process.env.GUILD_ID),
-			{ body: commands },
-		);
-		*/
+    */
 
 		console.log('Successfully reloaded application (/) commands.');
 	} catch (error) {

@@ -47,7 +47,7 @@ module.exports = {
             .setAuthor('Select the Radio Station', client.user.displayAvatarURL())
             .setTitle(data[0].name)
             .setURL(data[0].homepage)
-            .setThumbnail(data[0].favicon)
+            .setThumbnail(data[0].favicon.split(" ").join("%20"))
             .setFooter('◀️ : Previous, ✅ : Select, ▶️ : Next, ❌ : Close')
           let intr = await interaction.reply({ embeds: [embed], components: [row] })
           try {
