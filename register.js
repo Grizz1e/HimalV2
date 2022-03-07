@@ -1,9 +1,15 @@
-const { REST } = require('@discordjs/rest');
-const { Routes } = require('discord-api-types/v9');
-const { config } = require('dotenv')
+const {
+	REST
+} = require('@discordjs/rest');
+const {
+	Routes
+} = require('discord-api-types/v9');
+const {
+	config
+} = require('dotenv')
 const fs = require('fs');
 config({
-  path: `${__dirname}/.env`
+	path: `${__dirname}/.env`
 });
 
 const commands = [];
@@ -18,21 +24,24 @@ for (const file of commandFiles) {
 	commands.push(command.data.toJSON());
 }
 
-const rest = new REST({ version: '9' }).setToken(process.env.DISCORD_TOKEN);
+const rest = new REST({
+	version: '9'
+}).setToken(process.env.DISCORD_TOKEN);
 
 (async () => {
 	try {
 		console.log('Started refreshing application (/) commands.');
 
-    // If you want to set slash commands for specific guild, comment the code below
-    await rest.put(
-	    Routes.applicationCommands(clientId),
-	    { body: commands },
-    );
+		// If you want to set slash commands for specific guild, comment the code below
+		await rest.put(
+			Routes.applicationCommands(clientId), {
+				body: commands
+			},
+		);
 
 
-    // If you want to set slash commands for specific guild, uncomment the code below
-    /*
+		// If you want to set slash commands for specific guild, uncomment the code below
+		/*
 		await rest.put(
 			Routes.applicationGuildCommands(clientId, guildId),
 			{ body: commands },

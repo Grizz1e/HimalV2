@@ -1,8 +1,14 @@
 // required modules
 const keepAlive = require('./server.js'); // can be removed if you don't use repl.it to host your code
-const { Client, Collection, Intents } = require('discord.js');
+const {
+  Client,
+  Collection,
+  Intents
+} = require('discord.js');
 const fs = require('fs')
-const { config } = require('dotenv')
+const {
+  config
+} = require('dotenv')
 const func = require('./Util/function.js');
 config({
   path: `${__dirname}/.env`

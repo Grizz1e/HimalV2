@@ -1,4 +1,6 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const {
+  SlashCommandBuilder
+} = require('@discordjs/builders');
 const axios = require('axios');
 
 module.exports = {
@@ -7,14 +9,23 @@ module.exports = {
     .setDescription('Allows you to force play the given station')
     .addStringOption((option) =>
       option.setName('station')
-        .setDescription('Name of the radio station')
-        .setRequired(false),
+      .setDescription('Name of the radio station')
+      .setRequired(false),
     ),
   async execute(interaction, client) {
-    if (!interaction.member.voice.channelId) return await interaction.reply({ content: "You are not in a voice channel!", ephemeral: true });
+    if (!interaction.member.voice.channelId) return await interaction.reply({
+      content: "You are not in a voice channel!",
+      ephemeral: true
+    });
 
-    else if (interaction.guild.me.voice.channelId && interaction.member.voice.channelId !== interaction.guild.me.voice.channelId) return await interaction.reply({ content: "You are not in my voice channel!", ephemeral: true });
-    else if (!interaction.guild.me.voice.channelId) return await interaction.reply({ content: "I'm not playing anything!", ephemeral: true });
+    else if (interaction.guild.me.voice.channelId && interaction.member.voice.channelId !== interaction.guild.me.voice.channelId) return await interaction.reply({
+      content: "You are not in my voice channel!",
+      ephemeral: true
+    });
+    else if (!interaction.guild.me.voice.channelId) return await interaction.reply({
+      content: "I'm not playing anything!",
+      ephemeral: true
+    });
 
     const vc = interaction.member.voice
     if (interaction.member.roles.cache.some(role => role.name.toLowerCase() === 'dj') || vc.channel.permissionsFor(interaction.member).has("MANAGE_CHANNELS")) {
@@ -23,13 +34,19 @@ module.exports = {
       } else {
         axios.get(
           `http://all.api.radio-browser.info/json/stations/byname/${encodeURIComponent(interaction.options._hoistedOptions[0].value)}?limit=20`
-        ).then(function(response) {
+        ).then(function (response) {
           let data = response.data;
-          if (data.length < 1) return interaction.reply({ content: 'No radio station found with that name', ephemeral: true })
+          if (data.length < 1) return interaction.reply({
+            content: 'No radio station found with that name',
+            ephemeral: true
+          })
           else client.func.play(interaction, data[0].url_resolved, data[0].name)
         })
       }
-    } else return interaction.reply({ content: "You don't have `Manage Channel` permission nor do you have a role named `DJ`", ephemeral: true })
+    } else return interaction.reply({
+      content: "You don't have `Manage Channel` permission nor do you have a role named `DJ`",
+      ephemeral: true
+    })
 
   },
 };

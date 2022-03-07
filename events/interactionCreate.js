@@ -1,4 +1,6 @@
-const { MessageEmbed } = require('discord.js');
+const {
+  MessageEmbed
+} = require('discord.js');
 
 module.exports = {
   name: 'interactionCreate',
@@ -35,12 +37,21 @@ module.exports = {
         }
         const embed = new MessageEmbed()
           .setColor('GREEN')
-          .setAuthor({ name: "Himal's Help Menu", iconURL: client.user.displayAvatarURL() })
+          .setAuthor({
+            name: "Himal's Help Menu",
+            iconURL: client.user.displayAvatarURL()
+          })
           .setTitle(`/${interaction.values[0]}`)
           .setDescription(`${desc[0]}\n\n**Options**\n${desc.length == 1 ? "*Does not contain any options*" : `\`${desc[1]}\` - ${desc[2]} - ${desc[3] ? "Required" : "Optional"}`}`)
-          .setFooter({ text: 'Himal', iconURL: client.user.displayAvatarURL() })
+          .setFooter({
+            text: 'Himal',
+            iconURL: client.user.displayAvatarURL()
+          })
           .setTimestamp()
-        interaction.reply({ embeds: [embed], ephemeral: true })
+        interaction.reply({
+          embeds: [embed],
+          ephemeral: true
+        })
       }
 
     }
@@ -57,7 +68,10 @@ module.exports = {
       await command.execute(interaction, client, player);
     } catch (error) {
       console.error(error);
-      await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+      await interaction.reply({
+        content: 'There was an error while executing this command!',
+        ephemeral: true
+      });
     }
   },
 };
