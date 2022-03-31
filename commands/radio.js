@@ -53,11 +53,16 @@ module.exports = {
             )
           let i = 0
           let embed = new MessageEmbed()
-            .setAuthor('Select the Radio Station', client.user.displayAvatarURL())
+            .setAuthor({
+              name: 'Select the Radio Station',
+              iconURL: client.user.displayAvatarURL()
+            })
             .setTitle(data[0].name)
             .setURL(data[0].homepage)
             .setThumbnail(data[0].favicon.split(" ").join("%20"))
-            .setFooter('◀️ : Previous, ✅ : Select, ▶️ : Next, ❌ : Close')
+            .setFooter({
+              text: '◀️ : Previous, ✅ : Select, ▶️ : Next, ❌ : Close'
+            })
           let intr = await interaction.reply({
             embeds: [embed],
             components: [row]

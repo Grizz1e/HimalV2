@@ -5,6 +5,10 @@ const {
 module.exports = {
   name: 'interactionCreate',
   async execute(interaction, client, player) {
+    
+    // if the command is ran in a DM, ignore it
+    // you can make it send nothing but that will create "interaction failed" error message
+    if (!interaction.inGuild()) return interaction.reply({content: "Nice try :smirk:", ephemeral: true});
 
     // button response in the help menu
     if (interaction.isButton()) {
