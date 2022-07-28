@@ -2,8 +2,6 @@
 - [Node.js 16+](https://nodejs.org/en/download/)
 - [discord.js@14](https://discord.js.org/#/)
 
-**DO NOT JOIN OUR DISCORD FOR SELF HOSTING ISSUES**
-
 ## 📝 Setup
 - **Step 1:** Open `.env.example`
 - **Step 2:** Put the required values and rename it to `.env`
@@ -12,8 +10,7 @@
 - **Step 5:** Finally run `node index.js` in your terminal
 
 ## 📝 [Support Server](https://discord.gg/nZRMdQeK6m)
-
-## **DO NOT JOIN OUR DISCORD FOR SELF HOSTING ISSUES. WE WILL NOT HELP YOU.**
+You can join our server for any self hosting related issues or any problem with the bot.
 
 ## Replit Guide
 If you want to use replit.com to run your code 24/7, follow these steps
