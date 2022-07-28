@@ -36,7 +36,7 @@ function keepAlive() {
 
 module.exports = keepAlive;
 ```
-- **Step 4:** Go to `index.js` and at the top of the code, add `const keepAlive = require('./server.js');
+- **Step 4:** Go to `index.js` and at the top of the code, add `const keepAlive = require('./server.js')`;
 - **Step 5:** Before `client.login(token)` at line 34, add `keepAlive();`. Your final code should look something like this
 ```
 const keepAlive = require('./server.js');
@@ -51,9 +51,9 @@ client.login(token);
 - **Step 6:** Hit the "Run" button
 
 ## Stream URLs Used By Himal
-Lo-FI: https://ec2.yesstreaming.net:1915/stream
-Zen: https://streaming.positivity.radio/pr/calm/icecast.audio
-Radio Stream: https://radio-browser.info
+- Lo-FI: https://ec2.yesstreaming.net:1915/stream
+- Zen: https://streaming.positivity.radio/pr/calm/icecast.audio
+- Radio Stream: https://radio-browser.info
 
 ## 💨 Run the projects
 
