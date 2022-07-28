@@ -1,29 +1,59 @@
 ## ❗Prerequisites❗
 - [Node.js 16+](https://nodejs.org/en/download/)
-- [discord.js@13+](https://discord.js.org/#/)
-- [FFMPEG](https://ffmpeg.org/download.html)
+- [discord.js@14](https://discord.js.org/#/)
 
 **DO NOT JOIN OUR DISCORD FOR SELF HOSTING ISSUES**
 
 ## 📝 Setup
 - **Step 1:** Open `.env.example`
 - **Step 2:** Put the required values and rename it to `.env`
-- **Step 3:** Install required package using the following script
-```js
-npm install
-```
-- **Step 4:** Run `node register.js` to register commands *(`npx node register.js` if on replit)*
-- **Step 5:** Run `node index.js` in your terminal *(`npx node index.js` if on replit)*
-
-## ⚠️ Important
-If you're not using repl.it to host your code 24/7, follow these steps as well
-- **Step 1:** Remove line 2 and line 43 from `index.js`
-- **Step 2:** Remove `server.js`
-- **Step 3:** Remove `.replit`
+- **Step 3:** Open the terminal and run `npm install`. This installs all the necessary packages
+- **Step 4:** Run `node register.js`. This registers the slash commands to the guild
+- **Step 5:** Finally run `node index.js` in your terminal
 
 ## 📝 [Support Server](https://discord.gg/nZRMdQeK6m)
 
 ## **DO NOT JOIN OUR DISCORD FOR SELF HOSTING ISSUES. WE WILL NOT HELP YOU.**
+
+## Replit Guide
+If you want to use replit.com to run your code 24/7, follow these steps
+- **Step 1:** Go to the terminal and run `npm install express`
+- **Step 2:** Inside the root directory, create a file called `server.js`
+- **Step 3:** Paste the code below into `server.js`
+```
+const express = require('express')
+const server = express();
+
+server.all('/', (req, res) => {
+  res.send('OK')
+})
+
+function keepAlive() {
+  server.listen(3000, () => {
+    console.log("Server is ready!")
+  });
+}
+
+module.exports = keepAlive;
+```
+- **Step 4:** Go to `index.js` and at the top of the code, add `const keepAlive = require('./server.js');
+- **Step 5:** Before `client.login(token)` at line 34, add `keepAlive();`. Your final code should look something like this
+```
+const keepAlive = require('./server.js');
+const { Client, GatewayIntentBits, Collection } = require('discord.js');
+.
+.
+keepAlive();
+client.login(token);
+.
+.
+```
+- **Step 6:** Hit the "Run" button
+
+## Stream URLs Used By Himal
+Lo-FI: https://ec2.yesstreaming.net:1915/stream
+Zen: https://streaming.positivity.radio/pr/calm/icecast.audio
+Radio Stream: https://radio-browser.info
 
 ## 💨 Run the projects
 

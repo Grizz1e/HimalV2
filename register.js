@@ -1,52 +1,43 @@
-const {
-	REST
-} = require('@discordjs/rest');
-const {
-	Routes
-} = require('discord-api-types/v9');
-const {
-	config
-} = require('dotenv')
-const fs = require('fs');
+const { REST } = require('@discordjs/rest');
+const { Routes } = require('discord.js');
+const fs = require('node:fs');
+const { config } = require('dotenv')
 config({
-	path: `${__dirname}/.env`
+  path: `${__dirname}/.env`
 });
+const token = process.env.TOKEN;
+const clientId = process.env.CLIENT_ID;
+const guildId = process.env.GUILD_ID;
 
 const commands = [];
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-
-// Place your client and guild ids here
-const clientId = process.env.CLIENT_ID;
-const guildId = process.env.GUILD_ID;
 
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
 	commands.push(command.data.toJSON());
 }
 
-const rest = new REST({
-	version: '9'
-}).setToken(process.env.DISCORD_TOKEN);
+const rest = new REST({ version: '10' }).setToken(token);
 
 (async () => {
 	try {
 		console.log('Started refreshing application (/) commands.');
-
-		// If you want to set slash commands for specific guild, comment the code below
-		await rest.put(
-			Routes.applicationCommands(clientId), {
-				body: commands
-			},
-		);
-
-
-		// If you want to set slash commands for specific guild, uncomment the code below
 		/*
+		To register commands for every guilds the bot is in, comment the code below
+		and uncomment the code from line 34 to line 37
+		you can also remove line 10
+		*/
+
 		await rest.put(
 			Routes.applicationGuildCommands(clientId, guildId),
 			{ body: commands },
 		);
-    */
+	
+		// await rest.put(
+		// 	Routes.applicationCommands(clientId),
+		// 	{ body: commands },
+		// );
+		
 
 		console.log('Successfully reloaded application (/) commands.');
 	} catch (error) {

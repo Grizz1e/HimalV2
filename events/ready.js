@@ -1,10 +1,10 @@
+const { ActivityType } = require('discord.js');
+
 module.exports = {
   name: 'ready',
   once: true,
-  async execute(client) {
-    console.log(`Logged in as ${client.user.tag}!`);
-    await client.user.setActivity('/play', {
-      type: 'LISTENING'
-    });
+  execute(client) {
+    console.log(`Logged in as ${client.user.tag}`);
+    client.user.setActivity('/play', { type: ActivityType.Listening });
   },
 };
