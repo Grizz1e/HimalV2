@@ -24,7 +24,7 @@ const rest = new REST({ version: '10' }).setToken(token);
 		console.log('Started refreshing application (/) commands.');
 		/*
 		To register commands for every guilds the bot is in, comment the code below
-		and uncomment the code from line 34 to line 37
+		and uncomment the code from line 36 to line 39
 		you can also remove line 10
 		*/
 

@@ -8,6 +8,8 @@
 - **Step 3:** Open the terminal and run `npm install`. This installs all the necessary packages
 - **Step 4:** Run `node register.js`. This registers the slash commands to the guild
 - **Step 5:** Finally run `node index.js` in your terminal
+# NOTE:
+- By default,  `register.js` registers the commands for single server. To register commands for all servers the bot is in, go to `register.js`, comment the code from line 31 - 34 and uncomment the code from line 36 - 39
 
 ## 📝 [Support Server](https://discord.gg/nZRMdQeK6m)
 You can join our server for any self hosting related issues or any problem with the bot.
