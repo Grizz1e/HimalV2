@@ -8,8 +8,10 @@
 - **Step 3:** Open the terminal and run `npm install`. This installs all the necessary packages
 - **Step 4:** Run `node register.js`. This registers the slash commands to the guild
 - **Step 5:** Finally run `node index.js` in your terminal
-# NOTE:
+
+## NOTE:
 - By default,  `register.js` registers the commands for single server. To register commands for all servers the bot is in, go to `register.js`, comment the code from line 31 - 34 and uncomment the code from line 36 - 39
+- Sharding is not recommended for bots that are in less than 2,000 servers. To remove sharding, delete `index.js` and rename `app.js` to `index.js`.
 
 ## 📝 [Support Server](https://discord.gg/nZRMdQeK6m)
 You can join our server for any self hosting related issues or any problem with the bot.
@@ -19,7 +21,7 @@ If you want to use replit.com to run your code 24/7, follow these steps
 - **Step 1:** Go to the terminal and run `npm install express`
 - **Step 2:** Inside the root directory, create a file called `server.js`
 - **Step 3:** Paste the code below into `server.js`
-```
+```js
 const express = require('express')
 const server = express();
 
@@ -36,14 +38,14 @@ function keepAlive() {
 module.exports = keepAlive;
 ```
 - **Step 4:** Go to `index.js` and at the top of the code, add `const keepAlive = require('./server.js')`;
-- **Step 5:** Before `client.login(token)` at line 34, add `keepAlive();`. Your final code should look something like this
-```
+- **Step 5:** Before the sharding manager is created, call the `keepAlive()` function. Your final code should look something like this:
+```js
 const keepAlive = require('./server.js');
-const { Client, GatewayIntentBits, Collection } = require('discord.js');
+const { ShardingManager } = require('discord.js');
 .
 .
 keepAlive();
-client.login(token);
+const manager = new ShardingManager('./app.js', { token: token });
 .
 .
 ```
