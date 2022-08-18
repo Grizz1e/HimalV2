@@ -1,6 +1,6 @@
 {
-  "name": "meroshare",
-  "version": "1.0.0",
+  "name": "himal",
+  "version": "3.1.0",
   "description": "Himal is the #1 Lo-fi Music Bot on Discord built upon discord.js v13 that also happens to play more that 30,000 radio stations from around the world",
   "main": "index.js",
   "scripts": {

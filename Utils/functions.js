@@ -1,6 +1,12 @@
 const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const { getVoiceConnection, VoiceReceiver } = require('@discordjs/voice')
 
+/**
+ * It creates a new ActionRowBuilder, adds three buttons to it, and returns the row.
+ * 
+ * Now, let's add the row to the embed.
+ * @returns The row is being returned.
+ */
 async function createButtons() {
   const row = new ActionRowBuilder()
     .addComponents(
@@ -19,6 +25,14 @@ async function createButtons() {
     );
   return row;
 }
+/**
+ * If the bot is already playing, the author is not in a voice channel, the voice channel is not
+ * joinable, the voice channel is not speakable, or the voice channel is full, then the bot cannot
+ * play.
+ * </code>
+ * @param interaction - The interaction object, which contains the following properties:
+ * @returns An object with two properties, canPlay and reason.
+ */
 async function canPlayInVC(interaction) {
   const vc = interaction.member.voice;
   const vcChannel = vc.channel
@@ -56,6 +70,10 @@ async function canPlayInVC(interaction) {
     }
   }
 }
+/**
+ * It creates a new ActionRowBuilder, adds four buttons to it, and returns the row.
+ * @returns A row of buttons.
+ */
 async function createRadioButtons() {
   let row = new ActionRowBuilder()
     .addComponents(

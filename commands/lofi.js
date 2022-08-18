@@ -4,7 +4,7 @@ const { createAudioPlayer, createAudioResource, joinVoiceChannel, StreamType } =
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName('play')
+    .setName('lofi')
     .setDescription('Starts playing Lo-fi radio station!'),
   async execute(interaction, client) {
     const playCheck = await client.function.canPlayInVC(interaction);
