@@ -11,7 +11,7 @@
 
 ## NOTE:
 - By default,  `register.js` registers the commands for single server. To register commands for all servers the bot is in, go to `register.js`, comment the code from line 31 - 34 and uncomment the code from line 36 - 39
-- Sharding is not recommended for bots that are in less than 2,000 servers. To remove sharding, delete `index.js` and rename `app.js` to `index.js`.
+- Sharding is not recommended for bots that are in less than 2,000 servers. To remove sharding, delete `index.js`, delete `./events/shardError.js` and rename `app.js` to `index.js`.
 
 ## 📝 [Support Server](https://discord.gg/nZRMdQeK6m)
 You can join our server for any self hosting related issues or any problem with the bot.
