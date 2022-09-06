@@ -1,67 +1,15 @@
-const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
-const { getVoiceConnection, VoiceReceiver } = require('@discordjs/voice')
+const { ActionRowBuilder, ButtonBuilder, ButtonStyle, SelectMenuBuilder, PermissionsBitField } = require('discord.js');
 
-/**
- * It creates a new ActionRowBuilder, adds three buttons to it, and returns the row.
- * 
- * Now, let's add the row to the embed.
- * @returns The row is being returned.
- */
-async function createButtons() {
-  const row = new ActionRowBuilder()
-    .addComponents(
-      new ButtonBuilder()
-        .setURL('https://ko-fi.com/grizz1e')
-        .setEmoji('919834131670646824')
-        .setStyle(ButtonStyle.Link),
-      new ButtonBuilder()
-        .setURL('https://discord.com/invite/nZRMdQeK6m')
-        .setEmoji('882684602639081492')
-        .setStyle(ButtonStyle.Link),
-      new ButtonBuilder()
-        .setURL('https://himal.grizz1e.xyz')
-        .setEmoji('882683102890197062')
-        .setStyle(ButtonStyle.Link)
-    );
-  return row;
-}
-/**
- * If the bot is already playing, the author is not in a voice channel, the voice channel is not
- * joinable, the voice channel is not speakable, or the voice channel is full, then the bot cannot
- * play.
- * </code>
- * @param interaction - The interaction object, which contains the following properties:
- * @returns An object with two properties, canPlay and reason.
- */
 async function canPlayInVC(interaction) {
-  const vc = interaction.member.voice;
-  const vcChannel = vc.channel
-  const vcConnection = getVoiceConnection(interaction.guildId);
-  const vcReceiver = new VoiceReceiver(vcConnection);
-  if (vcConnection && vcReceiver.speaking && !interaction.forceplay) {
-    return {
-      canPlay: false,
-      reason: "Already Playing"
-    }
-  } else if (!vcChannel) {
+  if (!interaction.member.voice.channelId) {
     return {
       canPlay: false,
       reason: "Author Not In VC"
     }
-  } else if (!vcChannel.joinable) {
+  } else if (interaction.guild.members.me.voice.channelId && interaction.member.voice.channelId !== interaction.guild.members.me.voice.channelId) {
     return {
       canPlay: false,
-      reason: "VC Not Joinable"
-    }
-  } else if (!vcChannel.speakable) {
-    return {
-      canPlay: false,
-      reason: "VC Not Speakable"
-    }
-  } else if (vcChannel.full) {
-    return {
-      canPlay: false,
-      reason: "VC Full"
+      reason: "Author Not In Same VC"
     }
   } else {
     return {
@@ -70,10 +18,7 @@ async function canPlayInVC(interaction) {
     }
   }
 }
-/**
- * It creates a new ActionRowBuilder, adds four buttons to it, and returns the row.
- * @returns A row of buttons.
- */
+
 async function createRadioButtons() {
   let row = new ActionRowBuilder()
     .addComponents(
@@ -99,4 +44,64 @@ async function createRadioButtons() {
     )
   return row;
 }
-module.exports = { createButtons, canPlayInVC, createRadioButtons }
+
+async function helpComponentBuilder(includeSelectMenu) {
+  let menu = new ActionRowBuilder()
+    .addComponents(
+      new SelectMenuBuilder()
+        .setCustomId('helpmenu')
+        .setPlaceholder('Nothing selected')
+        .addOptions(
+          {
+            label: '🎶 Music',
+            description: 'Commands related to music',
+            value: 'help_music',
+          },
+          {
+            label: '🤖 Bot',
+            description: 'Commands related to bot',
+            value: 'help_bot',
+          },
+        ),
+    )
+  let buttons1 = new ActionRowBuilder()
+    .addComponents(
+      new ButtonBuilder()
+        .setCustomId('play')
+        .setLabel('Play')
+        .setEmoji('▶️')
+        .setStyle(ButtonStyle.Primary),
+      new ButtonBuilder()
+        .setEmoji('🤖')
+        .setLabel('All Commands')
+        .setStyle(ButtonStyle.Link)
+        .setURL('https://himal.grizz1e.com/commands'),
+      new ButtonBuilder()
+        .setEmoji('919834131670646824')
+        .setLabel('Ko-Fi')
+        .setStyle(ButtonStyle.Link)
+        .setURL('https://ko-fi.com/Grizz1e')
+    )
+  let buttons2 = new ActionRowBuilder()
+    .addComponents(
+      new ButtonBuilder()
+        .setEmoji('882684602639081492')
+        .setLabel('Support Server')
+        .setStyle(ButtonStyle.Link)
+        .setURL('https://himal.grizz1e.com/server'),
+      new ButtonBuilder()
+        .setEmoji('882683102890197062')
+        .setLabel('Invite Me')
+        .setStyle(ButtonStyle.Link)
+        .setURL('https://himal.grizz1e.com/invite'),
+    )
+  return [menu, buttons1, buttons2]
+}
+async function isTrackOwner(track, interaction) {
+  return track.requestedBy.id === interaction.user.id
+}
+async function isDJ(member, channel) {
+  return member.roles.cache.some(role => role.name.toLowerCase() === 'dj') || member.permissionsIn(channel).has(PermissionsBitField.Flags.ManageChannels) || channel.members.size < 4
+}
+
+module.exports = { canPlayInVC, createRadioButtons, helpComponentBuilder, isTrackOwner, isDJ }

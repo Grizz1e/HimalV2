@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
-const { EmbedBuilder } = require('discord.js')
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js')
 const axios = require('axios')
 const osu = require('node-os-utils')
 
@@ -36,6 +35,6 @@ module.exports = {
                 { name: '🏓Ping', value: `\`${ping}ms\``, inline: true },
                 { name: '💽CPU Usage', value: `\`${cpuPercent}%\``, inline: true },
             )
-        interaction.followUp({ embeds: [embed] })
+        await interaction.followUp({ embeds: [embed] })
     },
 };
