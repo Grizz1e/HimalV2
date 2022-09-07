@@ -1,6 +1,6 @@
 {
   "name": "himal",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "Himal is the #1 Lo-fi Music Bot on Discord built upon discord.js v14 that also happens to play more that 30,000 radio stations from around the world",
   "main": "index.js",
   "scripts": {

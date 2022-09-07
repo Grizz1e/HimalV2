@@ -13,7 +13,6 @@ client.commands = new Collection();
 client.function = require('./Utils/functions.js')
 const player = new Player(client)
 
-
 require(`./Utils/cmdHandler`)(client)
 
 

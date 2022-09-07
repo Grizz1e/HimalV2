@@ -101,7 +101,7 @@ async function isTrackOwner(track, interaction) {
   return track.requestedBy.id === interaction.user.id
 }
 async function isDJ(member, channel) {
-  return member.roles.cache.some(role => role.name.toLowerCase() === 'dj') || member.permissionsIn(channel).has(PermissionsBitField.Flags.ManageChannels) || channel.members.size < 4
+  return member.roles.cache.some(role => role.name.toLowerCase() === 'dj') || member.permissionsIn(channel).has(PermissionsBitField.Flags.ManageChannels) || channel.members.size < 3
 }
 
 module.exports = { canPlayInVC, createRadioButtons, helpComponentBuilder, isTrackOwner, isDJ }

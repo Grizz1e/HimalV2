@@ -8,7 +8,7 @@ module.exports = {
         let queue = await player.getQueue(interaction.guild)
         if (!queue) return await interaction.reply({ content: `❌ | There's nothing in the queue`, ephemeral: true })
         let current = await queue.nowPlaying().title
-        let upNext = await queue.tracks.map((x, i) => `\`${i + 1}\` ${x.title.substring(0, 10)}`)
+        let upNext = await queue.tracks.map((x, i) => `\`${i + 1}\` ${x.title.substring(0, 20)}...`)
         let embed = new EmbedBuilder()
             .setColor('#99ff66')
             .setTitle('🎶 Music Queue')
