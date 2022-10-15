@@ -9,6 +9,12 @@
 - **Step 4:** Run `node register.js`. This registers the slash commands to the guild
 - **Step 5:** Finally run `node index.js` in your terminal
 
+## 📝 Setup with Docker
+- **Step 1:** Open `env.example`
+- **Step 2:** Put the required values and rename it to `.env`
+- **Step 3:** Run `docker-compose build`
+- **Step 4:** Finally run `docker-compose up`
+
 ## NOTE:
 - By default,  `register.js` registers the commands for single server. To register commands for all servers the bot is in, go to `register.js`, comment the code from line 34 - 37 and uncomment the code from line 39 - 42
 - Sharding is not recommended for bots that are in less than 2,000 servers. To remove sharding, delete `index.js`, delete `./events/shardError.js` and rename `app.js` to `index.js`.
