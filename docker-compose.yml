@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  himal:
+    build: .
+    env_file: .env
+    command: node index.js
+    volumes:
+      - ./:/code
