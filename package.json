@@ -29,6 +29,7 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@discord-player/extractor": "^3.0.2",
+    "@discordjs/opus": "^0.8.0",
     "axios": "^1.2.1",
     "discord-player": "^5.3.2",
     "discord.js": "^14.7.1",
