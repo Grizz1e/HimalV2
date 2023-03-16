@@ -6,7 +6,6 @@ module.exports = {
     .setName('help')
     .setDescription('Shows you a help menu!'),
   async execute(interaction, client) {
-    console.log(await client.application.commands.cache)
     let intro = `The available commands are provided below. To view the available commands, select the command name from the selection menu provided below`
     let components = await client.function.helpComponentBuilder()
     let embed = new EmbedBuilder()
@@ -34,12 +33,7 @@ module.exports = {
         .setPlaceholder(`${emojiSync[category]} ${capCategory}`)
       collector.deferUpdate()
       embed.setTitle(`${emojiSync[category]} ${capCategory} Commands`)
-
-
-        .setDescription(`> `)                                                     //<${commands.join('> • <').replace(/.js/g, '')}`)
-
-
-
+        .setDescription(`> \`/${commands.join('` • /`').replace(/.js/g, '')}\``)
       await interaction.editReply({ embeds: [embed], components: components })
     } catch (err) {
       return
