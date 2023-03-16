@@ -35,7 +35,7 @@ for (const file of eventFiles) {
 for (const file of playerEventFiles) {
 	const filePath = path.join(playerEventsPath, file)
 	const playerEvent = require(filePath)
-	player.on(playerEvent.name, async (...args) => playerEvent.execute(...args, client))
+	player.events.on(playerEvent.name, async (...args) => playerEvent.execute(...args, client))
 }
 client.login(token)
 process.on("unhandledRejection", (err) => {

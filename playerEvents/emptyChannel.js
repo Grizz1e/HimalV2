@@ -1,7 +1,7 @@
 const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
-    name: 'channelEmpty',
+    name: 'emptyChannel',
     execute(queue, track) {
         let embed = new EmbedBuilder()
             .setColor('#ff6666')

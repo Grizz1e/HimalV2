@@ -58,7 +58,7 @@ const manager = new ShardingManager('./app.js', { token: token });
 - **Step 6:** Hit the "Run" button
 
 ## Stream URLs Used By Himal
-- Lo-FI: https://ec2.yesstreaming.net:1915/stream
+- Lo-FI: https://boxradio-edge-00.streamafrica.net/lofi
 - Zen: https://streaming.positivity.radio/pr/calm/icecast.audio
 - Radio Stream: https://radio-browser.info
 

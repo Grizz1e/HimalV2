@@ -1,4 +1,4 @@
-const { ActionRowBuilder, ButtonBuilder, ButtonStyle, SelectMenuBuilder, PermissionsBitField } = require('discord.js');
+const { ActionRowBuilder, ButtonBuilder, ButtonStyle, StringSelectMenuBuilder, PermissionsBitField } = require('discord.js');
 
 async function canPlayInVC(interaction) {
   if (!interaction.member.voice.channelId) {
@@ -48,7 +48,7 @@ async function createRadioButtons() {
 async function helpComponentBuilder(includeSelectMenu) {
   let menu = new ActionRowBuilder()
     .addComponents(
-      new SelectMenuBuilder()
+      new StringSelectMenuBuilder()
         .setCustomId('helpmenu')
         .setPlaceholder('Nothing selected')
         .addOptions(

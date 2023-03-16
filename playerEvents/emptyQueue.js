@@ -1,11 +1,11 @@
 const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
-    name: 'trackStart',
+    name: 'emptyQueue',
     execute(queue, track) {
         let embed = new EmbedBuilder()
             .setColor('#99ff66')
-            .setDescription(`🎶 | Started playing **${track.title}** in \`🔊 ${queue.metadata.channel.guild.members.me.voice.channel.name}\`!`)
+            .setDescription(`**🗒️ | Queue ended!**\nTo save resources, I've disconnected from the VC`)
         queue.metadata.channel.send({ embeds: [embed] })
     },
 };

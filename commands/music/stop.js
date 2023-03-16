@@ -7,13 +7,13 @@ module.exports = {
   async execute(interaction, client, player) {
     let canPlay = await client.function.canPlayInVC(interaction)
     if (!canPlay.canPlay) return await interaction.reply({ content: `❌ | ${canPlay.reason}`, ephemeral: true })
-    let queue = await player.getQueue(interaction.guild)
+    let queue = player.nodes.get(interaction.guildId)
     if (!queue) return await interaction.reply({ content: `❌ | There's nothing in the queue`, ephemeral: true })
-    if (!client.function.isTrackOwner(queue.nowPlaying(), interaction) && !client.function.isDJ(interaction.member, interaction.guild.members.me.voice.channel)) return await interaction.reply({ content: `❌ | You neither are a track owner, nor you have a role named \`DJ\`` })
+    if (!client.function.isTrackOwner(queue.currentTrack, interaction) && !client.function.isDJ(interaction.member, interaction.guild.members.me.voice.channel)) return await interaction.reply({ content: `❌ | You neither are a track owner, nor you have a role named \`DJ\`` })
     let embed = new EmbedBuilder()
       .setColor('#ff6666')
       .setDescription(`⏹️ | Stopped playing in \`${interaction.guild.members.me.voice.channel.name}\``)
     await interaction.reply({ embeds: [embed] })
-    await queue.stop()
+    await queue.node.stop()
   }
 }

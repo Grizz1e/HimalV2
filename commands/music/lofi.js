@@ -8,27 +8,28 @@ module.exports = {
     let canPlay = await client.function.canPlayInVC(interaction)
     if (!canPlay.canPlay) return await interaction.reply({ content: `❌ | ${canPlay.reason}`, ephemeral: true })
     await interaction.deferReply()
-    const track = await player.search(process.env.LOFI, {
-      requestedBy: interaction.user
-    }).then(x => x.tracks[0]);
-    track.title = 'Lo-fi Beats'
-    track.thumbnail = client.user.displayAvatarURL()
-    const queue = player.createQueue(interaction.guild, {
-      leaveOnEmpty: false,
-      metadata: {
-        channel: interaction.channel
-      }
-    });
+
     try {
-      if (!queue.connection) await queue.connect(interaction.member.voice.channel);
-    } catch {
-      queue.destroy()
-      return await interaction.followUp({ content: "❌ | Could not join your voice channel!", ephemeral: true });
+      const { track } = await player.play(interaction.member.voice.channel, process.env.LOFI, {
+        requestedBy: interaction.user,
+        nodeOptions: {
+          leaveOnEmpty: false,
+          metadata: {
+            channel: interaction.channel
+          }
+        }
+      })
+      track.title = "Lo-fi Beats"
+      track.type = "lofi"
+
+      let addedEmbed = new EmbedBuilder()
+        .setColor('#99ff66')
+        .setDescription(`⏱️ | Added track **${track.title}** to the queue!`)
+
+      interaction.followUp({ embeds: [addedEmbed] });
+
+    } catch (err) {
+      return interaction.followUp(`⚠️ | An unexpected error occurred: ${err.message}`)
     }
-    await queue.play(track)
-    let addedEmbed = new EmbedBuilder()
-      .setColor('#99ff66')
-      .setDescription(`⏱️ | Added track **${track.title}** to the queue!`)
-    return await interaction.followUp({ embeds: [addedEmbed] });
   }
 }

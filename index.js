@@ -12,5 +12,5 @@ manager.on('shardCreate', shard => console.log(`Launched shard ${shard.id}`))
 manager.spawn()
 
 process.on('unhandledRejection', error => {
-    console.error('Unhandled promise rejection:', error.statusText)
+    console.error('Unhandled promise rejection:', error)
 });

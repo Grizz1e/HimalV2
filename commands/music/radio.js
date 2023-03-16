@@ -20,28 +20,28 @@ module.exports = {
     if (data.length < 1) {
       return await interaction.followUp({ content: `❌ | No radio station was found` })
     } else if (data.length === 1) {
-      const track = await player.search(data[0].url_resolved, {
-        requestedBy: interaction.user
-      }).then(x => x.tracks[0]);
-      track.title = data[0].name
-      track.thumbnail = !!data[0].favicon ? data[0].favicon : radioIcon
-      const queue = player.createQueue(interaction.guild, {
-        leaveOnEmpty: false,
-        metadata: {
-          channel: interaction.channel
-        }
-      });
       try {
-        if (!queue.connection) await queue.connect(interaction.member.voice.channel);
+
+        const { track } = await player.play(interaction.member.voice.channel, data[0].url_resolved, {
+          requestedBy: interaction.user,
+          type: 'radio',
+          nodeOptions: {
+            leaveOnEmpty: false,
+            metadata: {
+              channel: interaction.channel
+            }
+          }
+        })
+        track.title = data[0].name
+        track.thumbnail = !!data[0].favicon ? data[0].favicon : radioIcon
+
+        let addedEmbed = new EmbedBuilder()
+          .setColor('#99ff66')
+          .setDescription(`⏱️ | Added track **${track.title}** to the queue!`)
+        return await interaction.followUp({ embeds: [addedEmbed] });
       } catch {
-        queue.destroy()
-        return await interaction.followUp({ content: "❌ | Could not join your voice channel!", ephemeral: true });
+        return await interaction.followUp({ content: `⚠️ | An unexpected error occurred: ${err.message}`, ephemeral: true });
       }
-      await queue.play(track)
-      let addedEmbed = new EmbedBuilder()
-        .setColor('#99ff66')
-        .setDescription(`⏱️ | Added track **${track.title}** to the queue!`)
-      return await interaction.followUp({ embeds: [addedEmbed] });
     } else {
       let url, title, thumbnail, buttons = await client.function.createRadioButtons(), i = 0
       let embed = new EmbedBuilder()
@@ -105,28 +105,22 @@ module.exports = {
         .setColor('#99ff66')
         .setDescription(`⏱️ | Added track **${title}** to the queue!`)
       await interaction.editReply({ embeds: [addedEmbed], components: [] });
-      const track = await player.search(url, {
-        requestedBy: interaction.user
-      }).then(x => x.tracks[0]);
-      if (typeof track === 'undefined') {
-        return await interaction.followUp({ content: `❌ | Looks like the stream URL is broken!\nURL: ${url}\nDoes this URL work? If it does, please join our support server and let us know`, ephemeral: true })
-      }
-      track.title = title
-      track.thumbnail = !!thumbnail ? thumbnail : radioIcon
-
-      const queue = player.createQueue(interaction.guild, {
-        leaveOnEmpty: false,
-        metadata: {
-          channel: interaction.channel
-        }
-      });
       try {
-        if (!queue.connection) await queue.connect(interaction.member.voice.channel);
-      } catch {
-        queue.destroy()
-        return await interaction.followUp({ content: "❌ | Could not join your voice channel!", ephemeral: true });
+        const { track } = await player.play(interaction.member.voice.channel, url, {
+          requestedBy: interaction.user,
+          type: 'radio',
+          nodeOptions: {
+            leaveOnEmpty: false,
+            metadata: {
+              channel: interaction.channel
+            }
+          }
+        })
+        track.title = title
+        track.thumbnail = !!thumbnail ? thumbnail : radioIcon
+      } catch (err) {
+        return await interaction.followUp({ content: `⚠️ | An unexpected error occurred: ${err.message}`, ephemeral: true });
       }
-      return await queue.play(track)
     }
   }
 }
