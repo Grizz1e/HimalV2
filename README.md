@@ -1,6 +1,7 @@
 ## ❗Prerequisites❗
 - [Node.js 16+](https://nodejs.org/en/download/)
 - [discord.js@14](https://discord.js.org/#/)
+- [MongoDB](https://www.mongodb.com/)
 
 ## 📝 Setup
 - **Step 1:** Open `.env.example`
@@ -61,13 +62,5 @@ const manager = new ShardingManager('./app.js', { token: token });
 - Lo-FI: https://boxradio-edge-00.streamafrica.net/lofi
 - Zen: https://streaming.positivity.radio/pr/calm/icecast.audio
 - Radio Stream: https://radio-browser.info
-
-## 💨 Run the projects
-
-[![Remix on Glitch](https://cdn.glitch.com/2703baf2-b643-4da7-ab91-7ee2a2d00b5b%2Fremix-button.svg)](https://glitch.com/edit/#!/import/github/Grizz1e/HimalV2)
-
-[![Run on Repl.it](https://repl.it/badge/github/Grizz1e/HimalV2)](https://repl.it/github/Grizz1e/HimalV2)
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Grizz1e/HimalV2)
 
 Made with ❤️ and JavaScript!
