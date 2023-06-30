@@ -10,7 +10,7 @@ module.exports = {
     await interaction.deferReply()
 
     try {
-      const { track } = await player.play(interaction.member.voice.channel, process.env.LOFI, {
+      const { track } = await player.play(interaction.member.voice.channel, process.env.ZEN, {
         requestedBy: interaction.user,
         type: 'zen',
         nodeOptions: {

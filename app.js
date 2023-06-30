@@ -4,6 +4,7 @@ const path = require('path')
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates] })
 const { Player } = require('discord-player')
 const { config } = require('dotenv')
+const { YouTubeExtractor, AttachmentExtractor } = require("@discord-player/extractor");
 config({
 	path: `${__dirname}/.env`
 });
@@ -12,6 +13,9 @@ const token = process.env.TOKEN;
 client.commands = new Collection();
 client.function = require('./Utils/functions.js')
 const player = new Player(client)
+
+player.extractors.register(YouTubeExtractor);
+player.extractors.register(AttachmentExtractor);
 
 require(`./Utils/cmdHandler`)(client)
 

@@ -1,9 +1,10 @@
 const { ActivityType } = require('discord.js');
-const fetch = require('node-fetch');
+// const fetch = require('node-fetch');
 const { Database } = require('quickmongo')
+const { Events } = require('discord.js');
 
 module.exports = {
-  name: 'ready',
+  name: Events.ClientReady,
   once: true,
   async execute(client) {
 

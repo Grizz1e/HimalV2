@@ -1,5 +1,7 @@
+const { Events } = require('discord.js');
+
 module.exports = {
-  name: 'interactionCreate',
+  name: Events.InteractionCreate,
   async execute(interaction, client, player) {
 
     if (!interaction.inGuild()) return interaction.reply({ content: "Nice try :smirk:", ephemeral: true });

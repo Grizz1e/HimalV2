@@ -1,6 +1,6 @@
-const { REST } = require('@discordjs/rest');
-const { Routes } = require('discord.js');
-const fs = require('fs');
+const { REST, Routes } = require('discord.js');
+const fs = require('node:fs');
+const path = require('node:path')
 const { config } = require('dotenv')
 config({
 	path: `${__dirname}/.env`
@@ -10,39 +10,48 @@ const clientId = process.env.CLIENT_ID;
 const guildId = process.env.GUILD_ID;
 
 const commands = [];
-const commandDir = fs.readdirSync('./commands', { withFileTypes: true }).filter(item => item.isDirectory()).map(dir => dir.name)
+const foldersPath = path.join(__dirname, 'commands');
+const commandFolders = fs.readdirSync(foldersPath);
 
-for (const dir of commandDir) {
-	const commandFiles = fs.readdirSync(`./commands/${dir}`).filter(file => file.endsWith('.js'))
+for (const folder of commandFolders) {
+	// Grab all the command files from the commands directory you created earlier
+	const commandsPath = path.join(foldersPath, folder);
+	const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
+	// Grab the SlashCommandBuilder#toJSON() output of each command's data for deployment
 	for (const file of commandFiles) {
-		const command = require(`./commands/${dir}/${file}`);
-		commands.push(command.data.toJSON());
+		const filePath = path.join(commandsPath, file);
+		const command = require(filePath);
+		if ('data' in command && 'execute' in command) {
+			commands.push(command.data.toJSON());
+		} else {
+			console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
+		}
 	}
 }
 
-const rest = new REST({ version: '10' }).setToken(token);
+const rest = new REST().setToken(token);
 
 (async () => {
 	try {
 		console.log('Started refreshing application (/) commands.');
 		/*
 		To register commands for every guilds the bot is in, comment the code below
-		and uncomment the code from line 36 to line 39
+		and uncomment the code from line 48 to line 51
 		you can also remove line 10
 		*/
 
-		await rest.put(
+		const data = await rest.put(
 			Routes.applicationGuildCommands(clientId, guildId),
 			{ body: commands },
 		);
 
-		// await rest.put(
+		// const data = await rest.put(
 		// 	Routes.applicationCommands(clientId),
 		// 	{ body: commands },
 		// );
 
 
-		console.log('Successfully reloaded application (/) commands.');
+		console.log(`Successfully reloaded ${data.length} application (/) commands.`);
 	} catch (error) {
 		console.error(error);
 	}

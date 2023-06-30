@@ -1,7 +1,8 @@
 const { EmbedBuilder } = require("discord.js")
+const { Events } = require('discord.js');
 
 module.exports = {
-    name: 'voiceStateUpdate',
+    name: Events.VoiceStateUpdate,
     async execute(oldState, newState, client, player) {
         if (newState.channel) {
 
