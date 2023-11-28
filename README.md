@@ -17,7 +17,7 @@
 - **Step 4:** Finally run `docker-compose up`
 
 ## NOTE:
-- By default,  `register.js` registers the commands for single server. To register commands for all servers the bot is in, go to `register.js`, comment the code from line 34 - 37 and uncomment the code from line 39 - 42
+- By default,  `register.js` registers the commands for single server. To register commands for all servers the bot is in, go to `register.js`, comment the code from line 43 - 46 and uncomment the code from line 48 - 51
 - Sharding is not recommended for bots that are in less than 2,000 servers. To remove sharding, delete `index.js`, delete `./events/shardError.js` and rename `app.js` to `index.js`.
 
 ## 📝 [Support Server](https://discord.gg/nZRMdQeK6m)
